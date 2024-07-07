@@ -43,7 +43,7 @@ function AboutSection() {
                 <div className="container">
                     <div className="row justify-content-center">
                         <div className="col-12 text-center">
-                            <img src="../../public/Mihary.jpg" alt="Mihary profile" />
+                            <img src="../assets/images/Mihary.jpg" alt="Mihary profile" />
                         </div>
                         <div className="col-lg-8 text-center mt-4">
                             <p>Je suis interne en médecine à la faculté de médecine d Antananarivo, et à mes heures perdues, 
@@ -89,22 +89,22 @@ function ContactSection() {
 function ToteBagasySection() {
   const cardsData = [
     {
-      image: "../../public/ToteBag.jpg",
+      image: "../assets/images/ToteBag.jpg",
       header: "Tote Bag 1",
       content: "Modèle numéro 1 que j'ai fait pour ma sœur ❤"
     },
     {
-      image: "../../public/TotteBagasy2.jpg",
+      image: "../assets/images/TotteBagasy2.jpg",
       header: "Tote Bag 2",
       content: "Tote Betsiky 😁"
     },
     {
-      image: "../../public/TotteBagasy3.jpg",
+      image: "../assets/images/TotteBagasy3.jpg",
       header: "Tote Bag 3",
       content: "Tote Bagasy Miaina 🧬"
     },
     {
-      image: "../../public/TotteBagasy4.jpg",
+      image: "../assets/images/TotteBagasy4.jpg",
       header: "Tote Bag 4",
       content: "Tote Bagasy Fo sy Saina🔥"
     },
@@ -174,7 +174,7 @@ function ShoesCustomSection() {
                     </div>
                     <div className="col-md-12 col-lg-8">
                         <video width="100%" controls>
-                            <source src="../../public/Shoes_custom.mp4" type="video/mp4" />
+                            <source src="../assets/images/Shoes_custom.mp4" type="video/mp4" />
                             Votre navigateur ne supporte pas la lecture de vidéo.
                         </video>
                     </div>
@@ -189,12 +189,12 @@ function ShoesCustomSection() {
 function PaintingSection() {
     const hexagonData = [
         {
-            image: "../../public/Tableau1.jpg",
+            image: "../assets/images/Tableau1.jpg",
             title: "Oeuvre 1",
             description: "Description for Oeuvre 1"
         },
         {
-            image: "../../public/Tableau2.jpg",
+            image: "../assets/images/Tableau2.jpg",
             title: "Oeuvre 2",
             description: "Description for Oeuvre 2"
         },

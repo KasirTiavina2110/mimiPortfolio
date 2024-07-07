@@ -99,7 +99,7 @@
      display: block;
      overflow: hidden;
      height: 100vh;
-     background-image: url('../../public/stetoscope2.jpg');
+     background-image: url('../assets/images/stetoscope2.jpg');
      background-size: cover;
      background-position: center;
      transform: scale(1) rotateX(0);
@@ -252,7 +252,7 @@
      display: block;
      overflow: hidden;
      height: 100%;
-     background-image: url('../../public/life-elements.jpg');
+     background-image: url('../assets/images/life-elements.jpg');
      transform: translateX(-100%);
      -webkit-transition: all 300ms linear;
      transition: all 300ms linear;
@@ -278,7 +278,7 @@
      background-repeat: no-repeat;
      background-position: center;
      background-size: 36px 36px;
-     background-image: url('../../public/close-circle-sharp-svgrepo-com.svg');
+     background-image: url('../assets/images/close-circle-sharp-svgrepo-com.svg');
      cursor: pointer;
      z-index: 11;
  }
@@ -365,7 +365,7 @@
      display: block;
      overflow: hidden;
      height: 100%;
-     background-image: url('../../public/Mihart2.jpg');
+     background-image: url('../assets/images/Mihart2.jpg');
      transform: translateX(100%);
      -webkit-transition: all 300ms linear;
      transition: all 300ms linear;
@@ -391,7 +391,7 @@
      background-repeat: no-repeat;
      background-position: center;
      background-size: 36px 36px;
-     background-image: url('../../public/close-svgrepo-com.svg');
+     background-image: url('../assets/images/close-svgrepo-com.svg');
      cursor: pointer;
      z-index: 11;
  }
@@ -448,11 +448,11 @@
      z-index: 10;
  }
  .ToteBagasy-section{
-    background-image: url('../../public/LOGO\ \(5\).jpg');
+    background-image: url('../assets/images/LOGO\ \(5\).jpg');
     background-size: cover;
  }
  .ShoesCustom-section{
-    background-image: url('../../public/ADN.jpg');
+    background-image: url('../assets/images/ADN.jpg');
     background-size: cover;
  }
  .Painting-section{
