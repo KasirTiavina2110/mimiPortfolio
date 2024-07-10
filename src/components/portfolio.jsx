@@ -1,17 +1,17 @@
 import "../css/portfolio.css"; // Vous pouvez adapter ce fichier CSS au besoin
 import Card from "./card";
 import Hexagon from "./hexagon";
-import PropTypes from "prop-types";
+
 
 // Import des images
-import miharyProfileImage from "../assets/images/Mihary.jpg";
-import toteBagImage1 from "../assets/images/ToteBag.jpg";
-import toteBagImage2 from "../assets/images/TotteBagasy2.jpg";
-import toteBagImage3 from "../assets/images/TotteBagasy3.jpg";
-import toteBagImage4 from "../assets/images/TotteBagasy4.jpg";
-import shoesCustomVideo from "../assets/images/Shoes_custom.mp4";
-import tableauImage1 from "../assets/images/Tableau1.jpg";
-import tableauImage2 from "../assets/images/Tableau2.jpg";
+import miharyProfileImage from "../../src/assets/images/Mihary.jpg";
+import toteBagImage1 from "../../src/assets/images/ToteBag.jpg";
+import toteBagImage2 from "../../src/assets/images/TotteBagasy2.jpg";
+import toteBagImage3 from "../../src/assets/images/TotteBagasy3.jpg";
+import toteBagImage4 from "../../src/assets/images/TotteBagasy4.jpg";
+import shoesCustomVideo from "../../src/assets/images/Shoes_custom.mp4";
+import tableauImage1 from "../../src/assets/images/Tableau.jpg";
+import tableauImage2 from "../../src/assets/images/Tableau2.jpg";
 
 function HeroSection() {
     return (
@@ -191,14 +191,14 @@ function PaintingSection() {
         {
             image: tableauImage1,
             title: "Oeuvre 1",
-            description: "Description for Oeuvre 1"
+            description: "Description pour l'oeuvre 1"
         },
         {
             image: tableauImage2,
             title: "Oeuvre 2",
-            description: "Description for Oeuvre 2"
+            description: "Description pour l'oeuvre 2"
         },
-        // Add more hexagons here
+        // Ajoutez plus d'hexagones ici
     ];
 
     return (
@@ -227,7 +227,12 @@ function PaintingSection() {
                     <ul id="categories" className="clr">
                         <li className="pusher"></li>
                         {hexagonData.map((hexagon, index) => (
-                            <Hexagon key={index} image={hexagon.image} title={hexagon.title} description={hexagon.description} />
+                            <Hexagon 
+                                key={index} 
+                                image={hexagon.image} 
+                                title={hexagon.title} 
+                                description={hexagon.description} 
+                            />
                         ))}
                         <li className="pusher"></li>
                     </ul>
@@ -236,11 +241,5 @@ function PaintingSection() {
         </div>
     );
 }
-
-PaintingSection.propTypes = {
-    image: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-};
 
 export { HeroSection, AboutSection, ContactSection, ToteBagasySection, ShoesCustomSection, PaintingSection };

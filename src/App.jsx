@@ -1,6 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import  { useEffect } from 'react';
-import Cursor from './components/cursor';
 import { HeroSection, AboutSection, ContactSection, ToteBagasySection, ShoesCustomSection, PaintingSection } from './components/portfolio';
 import $ from 'jquery'; 
 
@@ -74,7 +73,7 @@ function App() {
             <ShoesCustomSection />
             <PaintingSection />
         </div>
-        <Cursor/>
+        
         </>
     );
 }

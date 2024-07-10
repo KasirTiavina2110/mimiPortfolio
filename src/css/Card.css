@@ -1,12 +1,12 @@
 /* App.css */
 body {
-    margin: 40px 0;
-    font-family: "Raleway";
-    font-size: 14px;
-    font-weight: 500;
-    background-color: #BCAAA4;
-    -webkit-font-smoothing: antialiased;
-  }
+  margin: 40px 0;
+  font-family: "Raleway";
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #BCAAA4;
+  -webkit-font-smoothing: antialiased;
+}
   
   .title {
     font-family: "Raleway";
