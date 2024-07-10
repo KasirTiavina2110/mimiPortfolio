@@ -4,14 +4,14 @@ import Hexagon from "./hexagon";
 import PropTypes from "prop-types";
 
 // Import des images
-import miharyProfileImage from "../../images/Mihary.jpg";
-import toteBagImage1 from "../../images/ToteBag.jpg";
-import toteBagImage2 from "../../images/TotteBagasy2.jpg";
-import toteBagImage3 from "../../images/TotteBagasy3.jpg";
-import toteBagImage4 from "../../images/TotteBagasy4.jpg";
-import shoesCustomVideo from "../../images/Shoes_custom.mp4";
-import tableauImage1 from "../../images/Tableau1.jpg";
-import tableauImage2 from "../../images/Tableau2.jpg";
+import miharyProfileImage from "../assets/images/Mihary.jpg";
+import toteBagImage1 from "../assets/images/ToteBag.jpg";
+import toteBagImage2 from "../assets/images/TotteBagasy2.jpg";
+import toteBagImage3 from "../assets/images/TotteBagasy3.jpg";
+import toteBagImage4 from "../assets/images/TotteBagasy4.jpg";
+import shoesCustomVideo from "../assets/images/Shoes_custom.mp4";
+import tableauImage1 from "../assets/images/Tableau1.jpg";
+import tableauImage2 from "../assets/images/Tableau2.jpg";
 
 function HeroSection() {
     return (
