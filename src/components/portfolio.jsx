@@ -1,8 +1,18 @@
-//Portfolio
-import '../css/portfolio.css'; // Vous pouvez adapter ce fichier CSS au besoin
-import Card from './card';
-import Hexagon from './hexagon';
-import PropTypes from 'prop-types';
+import "../css/portfolio.css"; // Vous pouvez adapter ce fichier CSS au besoin
+import Card from "./card";
+import Hexagon from "./hexagon";
+import PropTypes from "prop-types";
+
+// Import des images
+import miharyProfileImage from "../../images/Mihary.jpg";
+import toteBagImage1 from "../../images/ToteBag.jpg";
+import toteBagImage2 from "../../images/TotteBagasy2.jpg";
+import toteBagImage3 from "../../images/TotteBagasy3.jpg";
+import toteBagImage4 from "../../images/TotteBagasy4.jpg";
+import shoesCustomVideo from "../../images/Shoes_custom.mp4";
+import tableauImage1 from "../../images/Tableau1.jpg";
+import tableauImage2 from "../../images/Tableau2.jpg";
+
 function HeroSection() {
     return (
         <div className="hero-section">
@@ -19,12 +29,9 @@ function HeroSection() {
                         </div>
                         <div className="col-12 text-center mt-4 mt-lg-5">
                             <p>
-                               
                                 <span className="ToteBagasy hover-target">ToteBagasy 🛍</span> 
                                 <span className="ShoesCustom hover-target">Shoes Custom 👟</span> 
                                 <span className="Painting hover-target">Painting 🖼🖌</span>
-                                
-                               
                             </p>
                         </div>
                     </div>
@@ -34,7 +41,6 @@ function HeroSection() {
     );
 }
 
-// Composant A propos
 function AboutSection() {
     return (
         <div className="about-section">
@@ -43,10 +49,11 @@ function AboutSection() {
                 <div className="container">
                     <div className="row justify-content-center">
                         <div className="col-12 text-center">
-                            <img src="../../images/Mihary.jpg" alt="Mihary profile" />
+                            <img src={miharyProfileImage} alt="Mihary profile" />
                         </div>
                         <div className="col-lg-8 text-center mt-4">
-                            <p>Je suis interne en médecine à la faculté de médecine d Antananarivo, et à mes heures perdues, 
+                            <p>
+                                Je suis interne en médecine à la faculté de médecine d Antananarivo, et à mes heures perdues, 
                                 je peins des tableaux. Passionnée par le corps humain depuis mon enfance, j ai décidé d en faire ma vocation. 
                                 Pour moi, la médecine n est pas seulement une science, c est un art. Ma devise est : La médecine, c est de l art. 
                                 Mon objectif est de fusionner mon métier et ma passion. 
@@ -63,7 +70,6 @@ function AboutSection() {
     );
 }
 
-// Composant ContactSection
 function ContactSection() {
     return (
         <div className="contact-section">
@@ -85,69 +91,64 @@ function ContactSection() {
     );
 }
 
-
 function ToteBagasySection() {
-  const cardsData = [
-    {
-      image: "../../images/ToteBag.jpg",
-      header: "Tote Bag 1",
-      content: "Modèle numéro 1 que j'ai fait pour ma sœur ❤"
-    },
-    {
-      image: "../../images/TotteBagasy2.jpg",
-      header: "Tote Bag 2",
-      content: "Tote Betsiky 😁"
-    },
-    {
-      image: "../../images/TotteBagasy3.jpg",
-      header: "Tote Bag 3",
-      content: "Tote Bagasy Miaina 🧬"
-    },
-    {
-      image: "../../images/TotteBagasy4.jpg",
-      header: "Tote Bag 4",
-      content: "Tote Bagasy Fo sy Saina🔥"
-    },
-  ];
+    const cardsData = [
+        {
+            image: toteBagImage1,
+            header: "Tote Bag 1",
+            content: "Modèle numéro 1 que j'ai fait pour ma sœur ❤"
+        },
+        {
+            image: toteBagImage2,
+            header: "Tote Bag 2",
+            content: "Tote Betsiky 😁"
+        },
+        {
+            image: toteBagImage3,
+            header: "Tote Bag 3",
+            content: "Tote Bagasy Miaina 🧬"
+        },
+        {
+            image: toteBagImage4,
+            header: "Tote Bag 4",
+            content: "Tote Bagasy Fo sy Saina🔥"
+        },
+    ];
 
-  return (
-    <div className="ToteBagasy-section">
-      <div className="ToteBagasy-close hover-target"></div>
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-12 text-center">
-            <h3>ToteBagasy</h3>
-          </div>
-          <div className="col-12 mt-3 text-center">
-            <p><span>Voici mes Créations</span></p>
-          </div>
-          <div className="col-12 text-center">
-            <p>
-              Un tote bag est un sac à main de grande taille,
-              souvent en toile ou en tissu, avec deux anses relativement longues permettant de le porter facilement sur l épaule.
-              <br />
-              Les tote bags sont populaires pour leur praticité et leur capacité à transporter divers objets au quotidien,
-              tels que des livres, des courses légères, des effets personnels, ou même comme sac de plage.
-              <br />
-              Ils sont appréciés pour leur simplicité et leur design souvent
-              décontracté, et sont devenus un accessoire à la fois utilitaire et à la mode dans de nombreuses cultures.<br />
-            </p>
-          </div>
-          {cardsData.map((card, index) => (
-            <div className="col-md-6 col-lg-4" key={index}>
-              <Card dataImage={card.image} header={card.header} content={card.content} />
+    return (
+        <div className="ToteBagasy-section">
+            <div className="ToteBagasy-close hover-target"></div>
+            <div className="container">
+                <div className="row justify-content-center">
+                    <div className="col-12 text-center">
+                        <h3>ToteBagasy</h3>
+                    </div>
+                    <div className="col-12 mt-3 text-center">
+                        <p><span>Voici mes Créations</span></p>
+                    </div>
+                    <div className="col-12 text-center">
+                        <p>
+                            Un tote bag est un sac à main de grande taille,
+                            souvent en toile ou en tissu, avec deux anses relativement longues permettant de le porter facilement sur l épaule.
+                            <br />
+                            Les tote bags sont populaires pour leur praticité et leur capacité à transporter divers objets au quotidien,
+                            tels que des livres, des courses légères, des effets personnels, ou même comme sac de plage.
+                            <br />
+                            Ils sont appréciés pour leur simplicité et leur design souvent
+                            décontracté, et sont devenus un accessoire à la fois utilitaire et à la mode dans de nombreuses cultures.<br />
+                        </p>
+                    </div>
+                    {cardsData.map((card, index) => (
+                        <div className="col-md-6 col-lg-4" key={index}>
+                            <Card dataImage={card.image} header={card.header} content={card.content} />
+                        </div>
+                    ))}
+                </div>
             </div>
-          ))}
         </div>
-      </div>
-    </div>
-  );
+    );
 }
 
-export default ToteBagasySection;
-
-
-// Composant ShoesCustomSection
 function ShoesCustomSection() {
     return (
         <div className="ShoesCustom-section">
@@ -163,38 +164,37 @@ function ShoesCustomSection() {
                     <div className="col-12 text-center">
                         <p>
                         Les shoes custom (ou chaussures personnalisées) désignent des chaussures qui ont été modifiées ou conçues de manière unique pour refléter les goûts, 
-                        la personnalité ou les préférences spécifiques de l utilisateur<br />
+                        la personnalité ou les préférences spécifiques de l utilisateur.<br />
                         Voici quelques points clés pour comprendre ce concept :<br />
                         Personnalisation Artistique:
                         <br />
-                        Peinture et Dessin: Utilisation de peintures acryliques, de marqueurs permanents, et d  autres outils pour créer des designs artistiques sur les chaussures.
+                        Peinture et Dessin: Utilisation de peintures acryliques, de marqueurs permanents, et d autres outils pour créer des designs artistiques sur les chaussures.
                         <br />
                         Graphismes Uniques: Création de motifs, logos, illustrations ou textes spécifiques pour rendre chaque paire de chaussures unique.<br />
                         </p>
                     </div>
                     <div className="col-md-12 col-lg-8">
                         <video width="100%" controls>
-                            <source src="../../images/Shoes_custom.mp4" type="video/mp4" />
+                            <source src={shoesCustomVideo} type="video/mp4" />
                             Votre navigateur ne supporte pas la lecture de vidéo.
                         </video>
                     </div>
-                    {/* Répétez les images pour chaque élément */}
+                    {/* Répétez les vidéos pour chaque élément */}
                 </div>
             </div>
         </div>
     );
 }
 
-// Composant PaintingSection
 function PaintingSection() {
     const hexagonData = [
         {
-            image: "../../images/Tableau1.jpg",
+            image: tableauImage1,
             title: "Oeuvre 1",
             description: "Description for Oeuvre 1"
         },
         {
-            image: "../../images/Tableau2.jpg",
+            image: tableauImage2,
             title: "Oeuvre 2",
             description: "Description for Oeuvre 2"
         },
@@ -242,7 +242,5 @@ PaintingSection.propTypes = {
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
 };
-
-
 
 export { HeroSection, AboutSection, ContactSection, ToteBagasySection, ShoesCustomSection, PaintingSection };
