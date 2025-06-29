@@ -1,7 +1,8 @@
-import "../css/portfolio.css"; // Vous pouvez adapter ce fichier CSS au besoin
+import "../css/portfolio.css"; 
+import "../css/contact.css"; // Vous pouvez adapter ce fichier CSS au besoin
 import Card from "./card";
 import Hexagon from "./hexagon";
-
+import { useState } from 'react';
 
 // Import des images
 import miharyProfileImage from "../../src/assets/images/Mihary.jpg";
@@ -71,24 +72,75 @@ function AboutSection() {
 }
 
 function ContactSection() {
-    return (
-        <div className="contact-section">
-            <div className="contact-close hover-target"></div>
-            <div className="section-center">
-                <div className="container">
-                    <div className="row justify-content-center">
-                        <div className="col-12 text-center">
-                            <a href="#" className="hover-target">razafimihary18@gmail.com</a>
-                        </div>
-                        <div className="col-12 text-center social mt-4">
-                            <a href="#" className="hover-target">instagram</a>
-                            <a href="#" className="hover-target">facebook</a>
-                        </div>
+    const [flipCard, setFlipCard] = useState(false);
+
+  return (
+    <div className="contact-section">
+      {/* Bouton fermer */}
+      <div
+        className="contact-close hover-target"
+        onClick={() => document.body.classList.remove('contact-on')}
+      />
+
+      <div className="section-center">
+        <div className="container">
+          {/* Bouton pour animer / reset */}
+          <div
+            className="flip-card hover-target"
+            onClick={() => setFlipCard(fc => !fc)}
+          >
+            {flipCard ? 'Reset' : 'Animate'}
+          </div>
+
+          {/* Envelope flip wrapper */}
+          <div className="contact-wrapper">
+            <div className={`envelope ${flipCard ? 'active' : ''}`}>
+              <div className="back paper"></div>
+              <div className="content">
+                <div className="form-wrapper">
+                  <form>
+                    <div className="top-wrapper">
+                      <div className="input">
+                        <label>Name</label>
+                        <input type="text" name="name" />
+                      </div>
+                      <div className="input">
+                        <label>Phone</label>
+                        <input type="text" name="phone" />
+                      </div>
+                      <div className="input">
+                        <label>Email</label>
+                        <input type="email" name="_replyto" />
+                      </div>
                     </div>
+                    <div className="bottom-wrapper">
+                      <div className="input">
+                        <label>Subject</label>
+                        <input type="text" name="_subject" />
+                      </div>
+                      <div className="input">
+                        <label>Message</label>
+                        <textarea rows="5" name="message"></textarea>
+                      </div>
+                      <div className="submit">
+                        <div
+                          className="submit-card hover-target"
+                          onClick={() => setFlipCard(false)}
+                        >
+                          Send Mail
+                        </div>
+                      </div>
+                    </div>
+                  </form>
                 </div>
+              </div>
+              <div className="front paper"></div>
             </div>
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 }
 
 function ToteBagasySection() {
