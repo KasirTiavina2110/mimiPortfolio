@@ -1,13 +1,14 @@
 /* App.css */
 body {
-  margin: 40px 0;
+  margin:  0;
   font-family: "Raleway";
   font-size: 14px;
   font-weight: 500;
-  background-color: #BCAAA4;
+  background-color: transparent;    /* ← ce fond beige s’applique à tout le <body> */
   -webkit-font-smoothing: antialiased;
-}
+  height: 100vh;
   
+}
   .title {
     font-family: "Raleway";
     font-size: 24px;
