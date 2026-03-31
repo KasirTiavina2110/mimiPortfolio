@@ -7,6 +7,20 @@ import miharyProfileImage from '../assets/images/Mihary.jpg';
 // ─────────────────────────────────────────────────────────
 
 function AboutSection() {
+  const handleTagClick = (tag) => {
+    const sectionMap = {
+      'Médecine 🩺': null,
+      'Peinture 🎨': 'Painting',
+      'Tote Bags 🛍': 'ToteBagasy',
+      'Shoes Custom 👟': 'ShoesCustom',
+    };
+
+    const targetSection = sectionMap[tag];
+    if (!targetSection) return; // Médecine → on reste dans AboutSection
+    document.body.classList.remove('about-on');
+    document.body.classList.add(`${targetSection}-on`);
+  };
+
   return (
     <div className="overlay-section about-section">
       <div className="btn-close-section about-close hover-target" />
@@ -53,10 +67,10 @@ function AboutSection() {
             </p>
 
             <div className="about-tags">
-              <span className="about-tag">Médecine 🩺</span>
-              <span className="about-tag">Peinture 🎨</span>
-              <span className="about-tag">Tote Bags 🛍</span>
-              <span className="about-tag">Shoes Custom 👟</span>
+              <span className="about-tag" onClick={() => handleTagClick('Médecine 🩺')} style={{cursor: 'pointer'}}>Médecine 🩺</span>
+              <span className="about-tag" onClick={() => handleTagClick('Peinture 🎨')} style={{cursor: 'pointer'}}>Peinture 🎨</span>
+              <span className="about-tag" onClick={() => handleTagClick('Tote Bags 🛍')} style={{cursor: 'pointer'}}>Tote Bags 🛍</span>
+              <span className="about-tag" onClick={() => handleTagClick('Shoes Custom 👟')} style={{cursor: 'pointer'}}>Shoes Custom 👟</span>
             </div>
           </div>
         </div>
