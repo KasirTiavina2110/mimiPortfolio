@@ -1,5 +1,5 @@
 import '../css/ToteBagasySection.css';
-import Card from './card';
+import Card from './Card';
 
 import toteBagImage1 from '../assets/images/ToteBag.jpg';
 import toteBagImage2 from '../assets/images/TotteBagasy2.jpg';
