@@ -1,0 +1,9 @@
+.painting-intro {
+  font-size: 0.78rem; letter-spacing: 0.12em;
+  color: var(--text-muted); margin-bottom: 3rem;
+}
+.hex-grid {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;
+}
+.hex-grid .pusher { width: 150px; }

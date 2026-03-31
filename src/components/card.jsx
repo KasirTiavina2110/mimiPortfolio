@@ -1,74 +1,90 @@
-import '../css/Card.css'; // Assurez-vous d'avoir le bon chemin vers votre fichier CSS
-import React, { useState} from 'react';
-import PropTypes from 'prop-types'; // Import de PropTypes pour la validation des props
+import '../css/Card.css';
+import { useState, useRef, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
-const Card = ({ dataImage, header, content }) => {
-  const [width, setWidth] = useState(0);
-  const [height, setHeight] = useState(0);
+// ─────────────────────────────────────────────────────────
+//  COMPOSANT : Card
+//  Effet de tilt 3D conservé, design modernisé.
+// ─────────────────────────────────────────────────────────
+
+function Card({ dataImage, header, content }) {
   const [mouseX, setMouseX] = useState(0);
   const [mouseY, setMouseY] = useState(0);
-  const [mouseLeaveDelay, setMouseLeaveDelay] = useState(null);
+  const [hovered, setHovered] = useState(false);
+  const cardRef = useRef(null);
+  const leaveTimer = useRef(null);
 
-  const cardRef = React.useRef(null);
-
-  React.useEffect(() => {
-      if (cardRef.current) {
-          setWidth(cardRef.current.offsetWidth);
-          setHeight(cardRef.current.offsetHeight);
-      }
-  }, []);
+  useEffect(() => () => clearTimeout(leaveTimer.current), []);
 
   const handleMouseMove = (e) => {
-      if (cardRef.current) {
-          setMouseX(e.pageX - cardRef.current.offsetLeft - width / 2);
-          setMouseY(e.pageY - cardRef.current.offsetTop - height / 2);
-      }
+    if (!cardRef.current) return;
+    const { offsetLeft, offsetTop, offsetWidth, offsetHeight } = cardRef.current;
+    setMouseX(e.pageX - offsetLeft - offsetWidth  / 2);
+    setMouseY(e.pageY - offsetTop  - offsetHeight / 2);
   };
 
   const handleMouseEnter = () => {
-      clearTimeout(mouseLeaveDelay);
+    clearTimeout(leaveTimer.current);
+    setHovered(true);
   };
 
   const handleMouseLeave = () => {
-      setMouseLeaveDelay(setTimeout(() => {
-          setMouseX(0);
-          setMouseY(0);
-      }, 1000));
+    setHovered(false);
+    leaveTimer.current = setTimeout(() => {
+      setMouseX(0);
+      setMouseY(0);
+    }, 800);
   };
 
-  const cardStyle = {
-      transform: `rotateY(${mouseX / width * 30}deg) rotateX(${-mouseY / height * 30}deg)`
-  };
-
-  const cardBgTransform = {
-      transform: `translateX(${mouseX / width * -40}px) translateY(${mouseY / height * -40}px)`
-  };
-
-  const cardBgImage = {
-      backgroundImage: `url(${dataImage})`
-  };
+  const w = cardRef.current?.offsetWidth  || 1;
+  const h = cardRef.current?.offsetHeight || 1;
 
   return (
-      <div className="card-wrap"
-          onMouseMove={handleMouseMove}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          ref={cardRef}>
-          <div className="card" style={cardStyle}>
-              <div className="card-bg" style={{ ...cardBgTransform, ...cardBgImage }}></div>
-              <div className="card-info">
-                  <h3>{header}</h3>
-                  <p>{content}</p>
-              </div>
-          </div>
+    <div
+      className="card-wrap hover-target"
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div
+        className="card-3d"
+        style={{ transform: `rotateY(${(mouseX / w) * 18}deg) rotateX(${(-mouseY / h) * 18}deg)` }}
+      >
+        {/* Image background with parallax */}
+        <div
+          className="card-3d__bg"
+          style={{
+            backgroundImage: `url(${dataImage})`,
+            transform: `translateX(${(mouseX / w) * -25}px) translateY(${(mouseY / h) * -25}px)`,
+          }}
+        />
+
+        {/* Gradient overlay */}
+        <div className="card-3d__overlay" />
+
+        {/* Content */}
+        <div className={`card-3d__info ${hovered ? 'is-visible' : ''}`}>
+          <h3 className="card-3d__title">{header}</h3>
+          <p  className="card-3d__desc">{content}</p>
+        </div>
+
+        {/* Shine layer */}
+        <div
+          className="card-3d__shine"
+          style={{
+            background: `radial-gradient(circle at ${50 + (mouseX / w) * 60}% ${50 + (mouseY / h) * 60}%, rgba(201,168,96,0.12) 0%, transparent 60%)`,
+          }}
+        />
       </div>
+    </div>
   );
-};
+}
 
 Card.propTypes = {
   dataImage: PropTypes.string.isRequired,
-  header: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
+  header:    PropTypes.string.isRequired,
+  content:   PropTypes.string.isRequired,
 };
 
 export default Card;

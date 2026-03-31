@@ -1,0 +1,75 @@
+.about-inner {
+  min-height: 100vh; display: flex;
+  align-items: center; padding-top: 5rem;
+}
+
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1.4fr;
+  gap: 6rem; align-items: center; width: 100%;
+}
+
+.about-photo-wrap {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 1.5rem;
+}
+
+.about-photo-frame {
+  position: relative; width: 100%;
+  max-width: 340px; aspect-ratio: 3/4; overflow: visible;
+}
+
+.about-photo-frame::before {
+  content: ''; position: absolute; inset: 0;
+  border: 1px solid var(--border); z-index: 1; pointer-events: none;
+}
+.about-photo-frame::after {
+  content: ''; position: absolute;
+  top: 14px; left: 14px; right: -14px; bottom: -14px;
+  border: 1px solid rgba(31,212,184,0.08); z-index: 0; pointer-events: none;
+}
+
+.about-photo {
+  width: 100%; height: 100%; object-fit: cover;
+  object-position: center top; display: block;
+  filter: grayscale(15%) brightness(0.95);
+  transition: filter 0.5s;
+}
+.about-photo:hover { filter: grayscale(0%) brightness(1); }
+
+.about-signature {
+  font-family: var(--font-display); font-style: italic;
+  font-size: 1.1rem; color: var(--text-muted); letter-spacing: 0.05em;
+}
+
+.about-bio {
+  font-size: 0.93rem; line-height: 1.85;
+  color: var(--text-muted); margin-bottom: 1.2rem;
+}
+
+.about-bio--accent {
+  font-family: var(--font-display); font-style: italic;
+  font-size: 1.3rem; color: var(--accent);
+  border-left: 2px solid var(--accent); padding-left: 1.2rem;
+  margin: 1.8rem 0;
+}
+
+.about-tags {
+  display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2rem;
+}
+.about-tag {
+  padding: 0.4rem 1rem;
+  background: var(--accent-dim);
+  border: 1px solid var(--border); border-radius: 2px;
+  font-size: 0.72rem; letter-spacing: 0.1em;
+  color: var(--text-muted);
+  transition: border-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+.about-tag:hover {
+  border-color: var(--accent); color: var(--accent);
+  box-shadow: 0 0 16px var(--accent-glow);
+}
+
+@media (max-width: 768px) {
+  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .about-inner { align-items: flex-start; }
+}

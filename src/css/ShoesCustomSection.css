@@ -1,0 +1,17 @@
+.shoes-layout { display: grid; grid-template-columns: 1fr 1.6fr; gap: 4rem; align-items: start; }
+.shoes-text p { font-size: 0.9rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 2rem; }
+.shoes-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+.shoes-list li {
+  font-size: 0.8rem; letter-spacing: 0.06em; color: var(--text-muted);
+  padding-left: 1.2rem; position: relative;
+}
+.shoes-list li::before {
+  content: '—'; position: absolute; left: 0;
+  color: var(--accent); font-size: 0.7rem;
+}
+.shoes-video-wrap {
+  position: relative; border: 1px solid var(--border); border-radius: 6px; overflow: hidden;
+  box-shadow: 0 0 40px rgba(31,212,184,0.06);
+}
+.shoes-video-wrap video { width: 100%; display: block; background: #000; }
+@media (max-width: 768px) { .shoes-layout { grid-template-columns: 1fr; gap: 2rem; } }
