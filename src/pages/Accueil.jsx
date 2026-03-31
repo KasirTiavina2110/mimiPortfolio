@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect } from 'react';
 import $ from 'jquery';
 
-import HeroSection        from '../components/herosection';
+import HeroSection from './components/HeroSection';
 import AboutSection       from '../components/AboutSection';
 import ContactSection     from '../components/ContactSection';
 import ToteBagasySection  from '../components/ToteBagasySection';
