@@ -1,6 +1,6 @@
 /* cSpell:disable */
 import '../css/PaintingSection.css';
-import Hexagon from 'Hexagon';
+import Hexagon from './Hexagon';
 
 import tableauImage from '../assets/images/Tableau.jpg';
 import tableauImage2 from '../assets/images/Tableau2.jpg';
