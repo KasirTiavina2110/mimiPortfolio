@@ -3,9 +3,9 @@ import { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 
 // ── Config EmailJS ──────────────────────────────────────
-const EMAILJS_SERVICE_ID  = 'TON_SERVICE_ID';
-const EMAILJS_TEMPLATE_ID = 'TON_TEMPLATE_ID';
-const EMAILJS_PUBLIC_KEY  = 'TA_PUBLIC_KEY';
+const EMAILJS_SERVICE_ID  = 'service_e3aj42l';
+const EMAILJS_TEMPLATE_ID = 'template_fn9uh8d';
+const EMAILJS_PUBLIC_KEY  = 'TaeIdHiP8tfDKXeJG';
 
 // ── Sécurité : limites de champs ────────────────────────
 const LIMITS = {
