@@ -1,8 +1,10 @@
 .tote-desc {
   max-width: 560px; font-size: 0.9rem; line-height: 1.8;
-  color: var(--text-muted); margin-bottom: 3rem;
+  color: var(--text-muted); margin-bottom: 2.5rem;
 }
 .tote-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.25rem;
 }
-@media (max-width: 600px) { .tote-grid { grid-template-columns: 1fr; } }
+@media (max-width: 500px) { .tote-grid { grid-template-columns: 1fr; } }

@@ -2,14 +2,12 @@
 
 .card-3d {
   position: relative; width: 100%; aspect-ratio: 3/4;
-  border-radius: 6px; overflow: hidden;
+  border-radius: 8px; overflow: hidden;
   border: 1px solid var(--border-sub);
   transform-style: preserve-3d;
   transition: transform 0.1s ease-out, box-shadow 0.4s;
-  will-change: transform;
-  background: var(--bg-card);
+  will-change: transform; background: var(--bg-card);
 }
-
 .card-wrap:hover .card-3d {
   box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px var(--accent), 0 0 40px var(--accent-glow);
 }
@@ -19,43 +17,28 @@
   background-size: cover; background-position: center;
   transition: transform 0.1s ease-out; will-change: transform;
 }
-
 .card-3d__overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(7, 9, 15, 0.92) 0%,
-    rgba(7, 9, 15, 0.3)  50%,
-    rgba(7, 9, 15, 0.05) 100%
-  );
+  background: linear-gradient(to top, rgba(12,10,13,0.92) 0%, rgba(12,10,13,0.3) 50%, rgba(12,10,13,0.05) 100%);
   z-index: 1;
 }
-
 .card-3d__shine {
   position: absolute; inset: 0; z-index: 2;
   pointer-events: none; transition: background 0.15s;
 }
-
 .card-3d__info {
   position: absolute; bottom: 0; left: 0; right: 0;
-  padding: 1.5rem; z-index: 3;
+  padding: 1.25rem; z-index: 3;
   transform: translateY(8px); opacity: 0;
   transition: opacity 0.3s, transform 0.3s;
 }
 .card-3d__info.is-visible { opacity: 1; transform: translateY(0); }
-
 .card-3d__title {
-  font-family: var(--font-display); font-size: 1.4rem;
+  font-family: var(--font-display); font-size: 1.3rem;
   font-weight: 300; color: var(--text); margin-bottom: 0.3rem;
 }
-
 .card-3d__title::after {
-  content: ''; display: block;
-  width: 24px; height: 1px;
-  background: var(--accent); margin-top: 0.4rem;
+  content: ''; display: block; width: 24px; height: 1px;
+  background: var(--accent); margin-top: 0.35rem;
 }
-
-.card-3d__desc {
-  font-size: 0.78rem;
-  color: var(--text-light); line-height: 1.5;
-}
+.card-3d__desc { font-size: 0.76rem; color: var(--text-light); line-height: 1.5; }

@@ -24,7 +24,7 @@ function PaintingSection() {
 
       <div className="section-inner">
 
-        {/* ── Header avec Lottie ── */}
+        {/* ── Header : texte gauche / Lottie droite ── */}
         <div className="painting-header">
           <div className="painting-header__text">
             <p className="section-label">Galerie</p>
@@ -34,18 +34,24 @@ function PaintingSection() {
             </h2>
             <div className="section-divider" />
             <p className="painting-intro">
-              Techniques employées : peinture à l&apos;huile · aquarelle · acrylique · gouache · encre
+              Techniques employées : peinture à l&apos;huile · aquarelle
+              · acrylique · gouache · encre
             </p>
           </div>
 
-          {/* Animation Lottie */}
-          <div className="painting-lottie">
-            <Lottie
-              animationData={paintingAnimation}
-              loop
-              autoplay
-              style={{ width: '100%', height: '100%' }}
-            />
+          {/* Lottie dans une forme organique animée */}
+          <div className="painting-lottie-wrap">
+            {/* Ondulations cycliques autour */}
+            <div className="painting-lottie-waves" />
+            {/* Blob morphing avec l'animation dedans */}
+            <div className="painting-lottie-blob">
+              <Lottie
+                animationData={paintingAnimation}
+                loop
+                autoplay
+                style={{ width: '100%', height: '100%' }}
+              />
+            </div>
           </div>
         </div>
 

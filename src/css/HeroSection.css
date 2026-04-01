@@ -1,41 +1,47 @@
 .hero-section {
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  width: 100vw; height: 100vh;
   background: var(--bg);
-  display: flex;
-  flex-direction: column;
+  display: flex; flex-direction: column;
   overflow: hidden;
 }
 
+/* Photo fond */
 .hero-grain {
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background-image: url("../assets/images/stetoscope2.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: 0.5;
-  pointer-events: none;
-  z-index: 0;
-  filter: saturate(0) brightness(0.9);
+  opacity: 0.18;
+  pointer-events: none; z-index: 0;
+  filter: saturate(0) brightness(0.85);
 }
 
+/* Lueur rose bas-droite */
+.hero-section::before {
+  content: '';
+  position: absolute; bottom: -100px; right: -100px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(212,120,154,0.08) 0%, transparent 65%);
+  pointer-events: none; z-index: 0;
+}
+/* Lueur lavande haut-gauche */
 .hero-section::after {
   content: '';
-  position: absolute;
-  bottom: -80px; right: -80px;
+  position: absolute; top: -80px; left: -80px;
   width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(31,212,184,0.07) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
+  background: radial-gradient(circle, rgba(155,142,184,0.06) 0%, transparent 65%);
+  pointer-events: none; z-index: 0;
 }
 
+/* Nav */
 .hero-nav {
   position: relative; z-index: 1;
   display: flex; align-items: center; justify-content: space-between;
   padding: 2rem 3rem;
 }
+@media (max-width: 600px) { .hero-nav { padding: 1.25rem 1.25rem; } }
 
 .hero-nav__logo {
   font-family: var(--font-display);
@@ -44,7 +50,7 @@
   text-shadow: 0 0 30px var(--accent-glow);
 }
 
-.hero-nav__links { display: flex; gap: 2.5rem; }
+.hero-nav__links { display: flex; gap: 2rem; }
 
 .hero-nav__link {
   font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em;
@@ -59,62 +65,62 @@
 .hero-nav__link:hover { color: var(--accent); }
 .hero-nav__link:hover::after { width: 100%; }
 
+/* Centre */
 .hero-center {
   position: relative; z-index: 1; flex: 1;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
-  text-align: center; padding: 0 2rem;
+  text-align: center; padding: 0 1.5rem;
 }
 
 .hero-eyebrow {
-  font-size: 1.5rem; font-weight: 500;
-  letter-spacing: 0.35em; text-transform: uppercase;
-  color: var(--accent); margin-bottom: 2rem; opacity: 0.8;
+  font-size: clamp(0.7rem, 2vw, 1rem);
+  font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 1.5rem; opacity: 0.8;
 }
 
 .hero-name {
   font-family: var(--font-display); font-weight: 300;
   line-height: 1; margin-bottom: 1.5rem;
   display: flex; flex-direction: column; gap: 0.05em;
-  
 }
 .hero-name__first {
-  font-size: clamp(4rem, 10vw, 9rem);
-   font-style: italic;
-  color:blanchedalmond;
+  font-size: clamp(3.5rem, 10vw, 9rem);
+  font-style: italic; color: var(--text);
 }
 .hero-name__last {
-  font-size: clamp(2rem, 5.5vw, 5rem);
+  font-size: clamp(1.8rem, 5.5vw, 5rem);
   color: var(--text-muted); letter-spacing: 0.12em;
-  color:blanchedalmond;
 }
 
 .hero-role {
-  display: flex; align-items: center;
-  gap: 1rem; margin-bottom: 4rem;
-  font-size: larger; font-weight: 400; color: var(--text-light);
+  display: flex; align-items: center; flex-wrap: wrap;
+  justify-content: center; gap: 0.6rem; margin-bottom: 3rem;
 }
-.hero-role__sep { color: var(--accent); font-size: 0.7rem; opacity: 0.6; font-size: larger; font-weight: 400; color: var(--text-light); }
+.hero-role__sep { color: var(--accent); opacity: 0.5; font-size: 0.8rem; }
 .hero-role__tag {
-  font-size: 0.72rem; font-weight: 400;
-  letter-spacing: 0.14em; text-transform: uppercase;
+  font-size: clamp(0.65rem, 1.5vw, 0.8rem);
+  font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase;
   color: var(--text-light);
-  font-size: larger; font-weight: 400; color: var(--text-light);
 }
 
+/* Boutons projets */
 .hero-projects {
-  display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+  display: flex; gap: 0.85rem; flex-wrap: wrap; justify-content: center;
 }
 
 .hero-project-btn {
-  display: flex; align-items: center; gap: 0.6rem;
-  padding: 0.8rem 1.8rem;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid var(--border-sub); border-radius: 3px;
+  display: flex; align-items: center; gap: 0.55rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(212,120,154,0.05);
+  border: 1px solid var(--border-sub); border-radius: 40px;
   color: var(--text-light); font-family: var(--font-body);
-  font-size: 0.95rem; font-weight: 400; letter-spacing: 0.1em;
-  cursor: pointer; transition: border-color 0.3s, background 0.3s, color 0.3s, box-shadow 0.3s;
-
+  font-size: clamp(0.72rem, 1.5vw, 0.85rem);
+  font-weight: 400; letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: border-color 0.3s, background 0.3s, color 0.3s, box-shadow 0.3s;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
 }
 .hero-project-btn:hover {
   border-color: var(--accent); background: var(--accent-dim);
@@ -123,17 +129,18 @@
 .hero-project-btn__icon { font-size: 1rem; transition: transform 0.3s; }
 .hero-project-btn:hover .hero-project-btn__icon { transform: scale(1.25) rotate(-5deg); }
 
+/* Scroll hint */
 .hero-hint {
   position: relative; z-index: 1;
   display: flex; flex-direction: column;
-  align-items: center; gap: 0.6rem; padding-bottom: 2.5rem;
-  color: var(--text-muted); font-size: 0.62rem;
-  letter-spacing: 0.25em; text-transform: uppercase;
-  
-  font-size: medium; font-weight: 500; letter-spacing: 0.18em;
+  align-items: center; gap: 0.5rem; padding-bottom: 2rem;
+  color: var(--text-muted);
+  font-size: clamp(0.6rem, 1.2vw, 0.72rem);
+  letter-spacing: 0.2em; text-transform: uppercase;
+  font-weight: 400;
 }
 .hero-hint__line {
-  width: 3px; height: 50px;
+  width: 2px; height: 44px;
   background: linear-gradient(to bottom, transparent, var(--accent));
   animation: hint-pulse 2.2s ease-in-out infinite;
 }
@@ -142,7 +149,7 @@
   50%       { opacity: 1;   transform: scaleY(1); }
 }
 
-@media (max-width: 600px) {
-  .hero-nav { padding: 1.5rem 1.5rem; }
+@media (max-width: 480px) {
   .hero-projects { flex-direction: column; align-items: center; }
+  .hero-project-btn { width: 200px; justify-content: center; }
 }
