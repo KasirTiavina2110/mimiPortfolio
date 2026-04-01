@@ -7,3 +7,31 @@
   display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;
 }
 .hex-grid .pusher { width: 150px; }
+/* ── Header avec Lottie ────────────────────────── */
+
+.painting-header {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  align-items: center;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.painting-lottie {
+  width: 320px;
+  height: 220px;
+  opacity: 0.9;
+  filter: hue-rotate(160deg) saturate(0.8);
+}
+
+@media (max-width: 768px) {
+  .painting-header {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .painting-lottie {
+    width: 220px;
+    height: 150px;
+    margin: 0 auto;
+  }
+}
