@@ -31,8 +31,6 @@ function HeroSection() {
         </h1>
 
         <p className="hero-role">
-          <span className="hero-role__tag">Délégué médicale  Thesard</span>
-          <span className="hero-role__sep" aria-hidden="true">—</span>
           <span className="hero-role__tag">Thesard en medecine</span>
           <span className="hero-role__sep" aria-hidden="true">—</span>
           <span className="hero-role__tag">Artiste</span>
@@ -41,12 +39,13 @@ function HeroSection() {
         {/* Catégories de projets */}
         <div className="hero-projects">
           <button className="ToteBagasy  hover-target hero-project-btn">
-            <span className="hero-project-btn__icon">🛍</span>
+            <span className="hero-project-btn__icon">🛍️</span>
             <span>ToteBagasy</span>
           </button>
           <button className="ShoesCustom hover-target hero-project-btn">
             <span className="hero-project-btn__icon">👟</span>
-            <span>Shoes Custom</span>
+            <span>All Customs</span>
+            <span className="hero-project-btn__icon">🎓</span>
           </button>
           <button className="Painting    hover-target hero-project-btn">
             <span className="hero-project-btn__icon">🖌</span>

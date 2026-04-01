@@ -176,6 +176,7 @@ function ContactSection() {
 
           {/* ── Droite : Formulaire ── */}
           <div className={`contact-form-side ${isOpen ? 'is-visible' : ''}`}>
+            <div className="form-dark-card">
 
             {/* ── Feedback statut ── */}
             {status === 'success' && (
@@ -286,6 +287,7 @@ function ContactSection() {
                 {status === 'sending' ? 'Envoi...' : 'Envoyer ✉'}
               </button>
             </div>
+            </div>{/* /form-dark-card */}
           </div>
 
         </div>
