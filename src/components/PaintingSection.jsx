@@ -1,7 +1,7 @@
 import '../css/PaintingSection.css';
 import Hexagon from './Hexagon';
 import Lottie from 'lottie-react';
-import paintingAnimation from '../assets/lotties/painting.json';
+import paintingAnimation from '../assets/painting.json';
 
 import tableauImage  from '../assets/images/Tableau.jpg';
 import tableauImage2 from '../assets/images/Tableau2.jpg';
