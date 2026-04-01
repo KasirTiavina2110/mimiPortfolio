@@ -1,5 +1,5 @@
 import '../css/AboutSection.css';
-import miharyProfileImage from '../assets/images/Mihary.jpg';
+import miharyProfileImage from '../assets/images/FutureDR.PNG';
 
 // ─────────────────────────────────────────────────────────
 //  COMPOSANT : AboutSection
@@ -50,7 +50,7 @@ function AboutSection() {
 
             <p className="about-bio">
               Thésard à la faculté de médecine d&apos;Antananarivo,
-              et à mes heures perdues, je peins des tableaux.
+              et à mes heures perdues, je peinds des tableaux.
             </p>
             <p className="about-bio">
               Passionnée par le corps humain depuis mon enfance, j&apos;ai décidé d&apos;en
