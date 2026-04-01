@@ -6,8 +6,8 @@ import paintingAnimation from '../assets/painting.json';
 import tableauImage  from '../assets/images/Tableau.jpg';
 import tableauImage2 from '../assets/images/Tableau2.jpg';
 import tableauImage1 from '../assets/images/Tableau1.jpg';
-import tableauImage4 from '../assets/images/WomanPortrait.png';
-import tableauImage3 from '../assets/images/WomanPortrait5.png';
+import tableauImage4 from '../assets/images/WomanPortrait.PNG';
+import tableauImage3 from '../assets/images/WomanPortrait5.PNG';
 
 const hexagonData = [
   { image: tableauImage1, title: 'Œuvre 1', description: "Description pour l'œuvre 1" },
