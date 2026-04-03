@@ -1,6 +1,7 @@
+/* ── Desktop sidebar ───────────────────────────────────── */
 .adm-nav {
   position: fixed; top: 0; left: 0; bottom: 0; width: 220px;
-  background: #ffffffd7;
+  background: #ffffff;
   border-right: 1px solid rgba(180,90,130,0.12);
   display: flex; flex-direction: column; padding: 1.5rem 0; z-index: 50;
   box-shadow: 2px 0 12px rgba(0,0,0,0.04);
@@ -16,11 +17,11 @@
   border: 1px solid rgba(212,120,154,0.25);
   display: flex; align-items: center; justify-content: center;
   font-family: 'Cormorant Garamond', serif; font-size: 0.9rem;
-  font-style: italic; color: #230913;
+  font-style: italic; color: #d4789a; flex-shrink: 0;
 }
 .adm-nav__title {
   font-size: 0.68rem; font-weight: 500; letter-spacing: 0.2em;
-  text-transform: uppercase; color: #2c0f24;
+  text-transform: uppercase; color: #b09aaa;
 }
 .adm-nav__links {
   flex: 1; padding: 1rem 0.75rem;
@@ -31,7 +32,7 @@
   padding: 0.6rem 0.75rem; border-radius: 6px;
   text-decoration: none; font-size: 0.82rem; font-weight: 400;
   color: #8a7088; letter-spacing: 0.04em;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s, color 0.2s; white-space: nowrap;
 }
 .adm-nav__link:hover  { background: rgba(212,120,154,0.08); color: #2a1e28; }
 .adm-nav__link.is-active {
@@ -43,22 +44,111 @@
   display: flex; flex-direction: column; gap: 0.6rem;
 }
 .adm-nav__email {
-  font-size: 0.68rem; color: #130a10;
+  font-size: 0.68rem; color: #b09aaa;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 .adm-nav__logout {
   font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em;
-  text-transform: uppercase; color: #1d010b; background: none; border: none;
+  text-transform: uppercase; color: #d4789a; background: none; border: none;
   cursor: pointer; text-align: left; padding: 0; opacity: 0.7; transition: opacity 0.2s;
 }
 .adm-nav__logout:hover { opacity: 1; }
+
+/* ══════════════════════════════════════════
+   MOBILE — barre horizontale scrollable
+══════════════════════════════════════════ */
 @media (max-width: 768px) {
-  .adm-nav { width: 100%; height: 56px; bottom: auto; flex-direction: row;
-    align-items: center; padding: 0 1rem; }
-  .adm-nav__brand { padding: 0 1rem 0 0; border-bottom: none;
-    border-right: 1px solid rgba(180,90,130,0.1); }
-  .adm-nav__links { flex-direction: row; padding: 0 0.5rem; gap: 0.1rem; }
-  .adm-nav__footer { padding: 0; border-top: none; border-left: 1px solid rgba(180,90,130,0.1);
-    margin-left: auto; padding-left: 1rem; }
+  .adm-nav {
+    width: 100%;
+    height: auto;
+    bottom: auto;
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+    /* Scroll horizontal si le contenu dépasse */
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    border-right: none;
+    border-bottom: 1px solid rgba(180,90,130,0.12);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+
+  /* Indicateur visuel qu'on peut scroller */
+  .adm-nav::after {
+    content: '';
+    position: sticky;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 24px;
+    flex-shrink: 0;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.9));
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .adm-nav__brand {
+    padding: 0 1rem;
+    border-bottom: none;
+    border-right: 1px solid rgba(180,90,130,0.1);
+    height: 56px;
+    flex-shrink: 0;
+  }
+  .adm-nav__title { display: none; }
+
+  .adm-nav__links {
+    flex-direction: row;
+    flex: 0 0 auto;        /* ne pas étirer — laisser défiler */
+    padding: 0 0.5rem;
+    gap: 0.1rem;
+    height: 56px;
+    align-items: center;
+  }
+
+  .adm-nav__link {
+    flex-shrink: 0;
+    padding: 0.5rem 0.75rem;
+    height: 56px;
+    border-radius: 0;
+    border-bottom: 2px solid transparent;
+    font-size: 0.78rem;
+  }
+  .adm-nav__link.is-active {
+    background: none;
+    border-bottom-color: #d4789a;
+    color: #d4789a;
+  }
+
+  .adm-nav__footer {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
+    border-top: none;
+    border-left: 1px solid rgba(180,90,130,0.1);
+    padding: 0 1rem;
+    height: 56px;
+    flex-shrink: 0;
+    margin-left: 0;       /* collé au contenu */
+  }
+
+  .adm-nav__email {
+    font-size: 0.62rem;
+    max-width: 120px;
+  }
+
+  .adm-nav__logout {
+    font-size: 0.68rem;
+    white-space: nowrap;
+    padding: 0.35rem 0.75rem;
+    border: 1px solid rgba(212,120,154,0.3);
+    border-radius: 20px;
+    opacity: 1;
+  }
+}
+
+/* Très petits écrans — cacher l'email */
+@media (max-width: 400px) {
   .adm-nav__email { display: none; }
 }
