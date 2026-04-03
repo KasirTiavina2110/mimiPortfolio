@@ -1,7 +1,11 @@
 import '../css/PaintingSection.css';
+import { useLang } from '../contexts/LangContext';
+import { t } from '../i18n/translations';
+import { useMedia } from '../admin/hooks/useMedia';
 import Lottie from 'lottie-react';
 import paintingAnimation from '../assets/painting.json';
 import { useState } from 'react';
+import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 
 import p11 from '../assets/images/Portrait11.jpeg';
@@ -21,133 +25,122 @@ import p24 from '../assets/images/Portrait24.jpeg';
 import p25 from '../assets/images/Portrait25.jpeg';
 import p26 from '../assets/images/Portrait26.jpeg';
 import pGars from '../assets/images/PortraitGars.PNG';
-import kasir from '../assets/images/Kasir1.jpeg';
+import kasir  from '../assets/images/Kasir1.jpeg';
 import kasir2 from '../assets/images/Kasir2.jpeg';
 
-const PORTRAITS = [
-  { src: p11,   label: 'Turban',          medium: 'Crayon' },
-  { src: p12,   label: 'Couleurs vives',  medium: 'Aquarelle' },
-  { src: p13,   label: 'Profil',          medium: 'Crayon' },
-  { src: p14,   label: 'Abstrait',        medium: 'Gouache' },
-  { src: p15,   label: 'Auburn',          medium: 'Crayon couleur' },
-  { src: p16,   label: 'Portrait gars',   medium: 'Crayon' },
-  { src: p17,   label: 'Mystère',         medium: 'Crayon' },
-  { src: p18,   label: 'Kendall',         medium: 'Crayon' },
-  { src: p19,   label: 'Yeux verts',      medium: 'Marqueur' },
-  { src: p20,   label: 'Bob noir',        medium: 'Marqueur' },
-  { src: p21,   label: 'Darkside',        medium: 'Gouache' },
-  { src: p22,   label: 'Col roulé vert',  medium: 'Marqueur' },
-  { src: p23,   label: 'Afro fleurie',    medium: 'Gouache' },
-  { src: p24,   label: 'Fleurs jaunes',   medium: 'Gouache' },
-  { src: p25,   label: 'Fleurs mauves',   medium: 'Gouache' },
-  { src: p26,   label: 'Queue de cheval', medium: 'Crayon' },
-  { src: pGars, label: 'Couronne verte',  medium: 'Marqueur' },
-  { src: kasir, label: 'Kasir', medium: 'Crayon' },
-  { src: kasir2, label: 'Kasir 2', medium: 'Crayon' },
+// ── Portraits avec noms et médiums ───────────────────────
+const LOCAL_PORTRAITS = [
+  { src: p11,   name: 'Turban',          medium: 'Crayon' },
+  { src: p12,   name: 'Couleurs vives',  medium: 'Aquarelle' },
+  { src: p13,   name: 'Profil',          medium: 'Crayon' },
+  { src: p14,   name: 'Abstrait',        medium: 'Gouache' },
+  { src: p15,   name: 'Auburn',          medium: 'Crayon couleur' },
+  { src: p16,   name: 'Portrait gars',   medium: 'Crayon' },
+  { src: p17,   name: 'Mystère',         medium: 'Crayon' },
+  { src: p18,   name: 'Kendall',         medium: 'Crayon' },
+  { src: p19,   name: 'Yeux verts',      medium: 'Marqueur' },
+  { src: p20,   name: 'Bob noir',        medium: 'Marqueur' },
+  { src: p21,   name: 'Darkside',        medium: 'Gouache' },
+  { src: p22,   name: 'Col roulé vert',  medium: 'Marqueur' },
+  { src: p23,   name: 'Afro fleurie',    medium: 'Gouache' },
+  { src: p24,   name: 'Fleurs jaunes',   medium: 'Gouache' },
+  { src: p25,   name: 'Fleurs mauves',   medium: 'Gouache' },
+  { src: p26,   name: 'Queue de cheval', medium: 'Crayon' },
+  { src: pGars, name: 'Couronne verte',  medium: 'Marqueur' },
+  { src: kasir, name: 'Kasir',           medium: 'Crayon' },
+  { src: kasir2,name: 'Kasir 2',         medium: 'Crayon' },
 ];
 
-// Carte hexagonale avec lightbox
-function HexCard({ portrait, index, onClick }) {
+function HexCard({ item, index, onClick }) {
   return (
-    <li
-      className="hex-item"
-      style={{ '--i': index }}
-      onClick={() => onClick(portrait)}
-    >
+    <li className="hex-item" style={{ '--i': index }} onClick={() => onClick(item)}>
       <div className="hex-inner">
-        <div
-          className="hex-img"
-          style={{ backgroundImage: `url(${portrait.src})` }}
-        />
+        <div className="hex-img" style={{ backgroundImage: `url(${item.src})` }} />
         <div className="hex-overlay">
-          <span className="hex-label">{portrait.label}</span>
-          <span className="hex-medium">{portrait.medium}</span>
+          <span className="hex-label">
+            {item.name}
+            {item.isRemote && <span className="hex-new"> ✦</span>}
+          </span>
+          {item.medium && <span className="hex-medium">{item.medium}</span>}
         </div>
       </div>
     </li>
   );
 }
-
 HexCard.propTypes = {
-  portrait: PropTypes.shape({
-    src: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-    medium: PropTypes.string.isRequired,
-  }).isRequired,
+  item: PropTypes.shape({ src: PropTypes.string.isRequired, name: PropTypes.string, medium: PropTypes.string, isRemote: PropTypes.bool }).isRequired,
   index: PropTypes.number.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 
-// Lightbox simple
-function Lightbox({ portrait, onClose }) {
-  if (!portrait) return null;
-  return (
+function Lightbox({ item, onClose }) {
+  if (!item) return null;
+  return createPortal(
     <div className="lb-backdrop" onClick={onClose}>
       <div className="lb-box" onClick={e => e.stopPropagation()}>
         <button className="lb-close" onClick={onClose}>×</button>
-        <img src={portrait.src} alt={portrait.label} className="lb-img" />
-        <div className="lb-caption">
-          <strong>{portrait.label}</strong>
-          <span>{portrait.medium}</span>
-        </div>
+        <img src={item.src} alt={item.name || 'Portrait'} className="lb-img" />
+        {(item.name || item.medium) && (
+          <div className="lb-caption">
+            {item.name && <strong>{item.name}</strong>}
+            {item.medium && <span>{item.medium}</span>}
+          </div>
+        )}
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
-
 Lightbox.propTypes = {
-  portrait: PropTypes.shape({
-    src: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-    medium: PropTypes.string.isRequired,
-  }),
+  item: PropTypes.shape({ src: PropTypes.string, name: PropTypes.string, medium: PropTypes.string }),
   onClose: PropTypes.func.isRequired,
 };
 
 function PaintingSection() {
+  const { lang } = useLang();
   const [selected, setSelected] = useState(null);
+  const { items, loading } = useMedia('paintings', LOCAL_PORTRAITS);
 
   return (
     <div className="overlay-section Painting-section">
       <div className="btn-close-section Painting-close hover-target" />
-
       <div className="section-inner painting-inner">
 
-        {/* ── Header ── */}
         <div className="painting-header">
           <div className="painting-header__text">
-            <p className="section-label">Galerie</p>
+            <p className="section-label">{t(lang,'painting_label')}</p>
             <h2 className="section-title">
-              Portraits &amp;<br /><em>Peintures</em>
+              {t(lang,'painting_title1')}<br /><em>{t(lang,'painting_title2')}</em>
             </h2>
             <div className="section-divider" />
             <p className="painting-intro">
-              Crayon · aquarelle · gouache · marqueur
+              {t(lang,'painting_intro')}
               <br />
-              <span className="painting-count">{PORTRAITS.length} œuvres</span>
+              <span className="painting-count">
+                {loading ? '…' : items.length} {t(lang,'painting_artworks') || 'œuvres'}
+              </span>
             </p>
           </div>
-
           <div className="painting-lottie-wrap">
             <div className="painting-lottie-waves" />
             <div className="painting-lottie-blob">
-              <Lottie animationData={paintingAnimation} loop autoplay
-                style={{ width: '100%', height: '100%' }} />
+              <Lottie animationData={paintingAnimation} loop autoplay style={{ width:'100%', height:'100%' }} />
             </div>
           </div>
         </div>
 
-        {/* ── Grille hexagonale ── */}
-        <ul className="hex-gallery">
-          {PORTRAITS.map((p, i) => (
-            <HexCard key={i} portrait={p} index={i} onClick={setSelected} />
-          ))}
-        </ul>
-
+        {loading ? (
+          <p className="painting-loading">Chargement de la galerie…</p>
+        ) : (
+          <ul className="hex-gallery">
+            {items.map((item, i) => (
+              <HexCard key={item.src + i} item={item} index={i} onClick={setSelected} />
+            ))}
+          </ul>
+        )}
       </div>
 
-      {/* Lightbox */}
-      <Lightbox portrait={selected} onClose={() => setSelected(null)} />
+      <Lightbox item={selected} onClose={() => setSelected(null)} />
     </div>
   );
 }

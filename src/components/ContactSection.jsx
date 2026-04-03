@@ -1,6 +1,9 @@
 import '../css/ContactSection.css';
 import { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
+import { trackMessage } from '../admin/hooks/useAnalytics';
+import { useLang } from '../contexts/LangContext';
+import { t } from '../i18n/translations';
 
 // ── Config EmailJS ──────────────────────────────────────
 const EMAILJS_SERVICE_ID  = 'service_e3aj42l';
@@ -58,6 +61,7 @@ const recordSubmission = () => {
 // ────────────────────────────────────────────────────────
 
 function ContactSection() {
+  const { lang } = useLang();
   const [isOpen,  setIsOpen]  = useState(false);
   const [fields,  setFields]  = useState(EMPTY);
   const [errors,  setErrors]  = useState({});
@@ -130,7 +134,8 @@ function ContactSection() {
         EMAILJS_PUBLIC_KEY
       );
 
-      recordSubmission(); // enregistre l'heure de soumission
+      recordSubmission();
+      trackMessage(safe.from_name, safe.subject || '(sans sujet)');
       setStatus('success');
       setFields(EMPTY);
       setErrors({});
@@ -150,8 +155,8 @@ function ContactSection() {
       />
 
       <div className="section-inner contact-inner">
-        <p className="section-label">Me contacter</p>
-        <h2 className="section-title">Envoyez<br /><em>un message</em></h2>
+        <p className="section-label">{t(lang,'contact_label')}</p>
+        <h2 className="section-title">{t(lang,'contact_title1')}<br /><em>{t(lang,'contact_title2')}</em></h2>
         <div className="section-divider" />
 
         <div className="contact-layout">
@@ -181,17 +186,17 @@ function ContactSection() {
             {/* ── Feedback statut ── */}
             {status === 'success' && (
               <div className="form-feedback form-feedback--success">
-                ✓ Message envoyé — je vous réponds bientôt !
+                {t(lang,'success_msg')}
               </div>
             )}
             {status === 'error' && (
               <div className="form-feedback form-feedback--error">
-                ✗ Erreur d&apos;envoi — réessaie dans quelques instants
+                {t(lang,'error_msg')}
               </div>
             )}
             {status === 'rate_limit' && (
               <div className="form-feedback form-feedback--error">
-                ✗ Trop de messages envoyés — réessaie dans 1 heure
+                {t(lang,'rate_limit_msg')}
               </div>
             )}
 
@@ -215,7 +220,7 @@ function ContactSection() {
                   </label>
                   <input
                     id="c_name" name="from_name" type="text"
-                    placeholder="Votre nom"
+                    placeholder={t(lang,'field_name').replace(' *','')}
                     autoComplete="name"
                     value={fields.from_name}
                     onChange={handleChange}
@@ -284,7 +289,7 @@ function ContactSection() {
                 onClick={handleSend}
                 disabled={status === 'sending' || status === 'rate_limit'}
               >
-                {status === 'sending' ? 'Envoi...' : 'Envoyer ✉'}
+                {status === 'sending' ? t(lang,'sending') : t(lang,'send_btn')}
               </button>
             </div>
             </div>{/* /form-dark-card */}
